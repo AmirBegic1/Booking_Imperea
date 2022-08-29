@@ -9,6 +9,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool isAPIcallProcess = false;
+  bool hidePasswrod = true;
+  GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
+  String? username;
+  String? password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,14 +46,17 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              SizedBox(
+                height: 30,
+              ),
               Text(
-                "Prijavite se na vaš Booking servis",
+                "Prijavite se na Booking servis",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
               SizedBox(
-                height: 100,
+                height: 200,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -57,10 +66,13 @@ class _LoginPageState extends State<LoginPage> {
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12)),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
+                    padding: const EdgeInsets.only(left: 10.0),
                     child: TextField(
                       decoration: InputDecoration(
-                          border: InputBorder.none, hintText: 'Vaš Email'),
+                          prefixIcon: Icon(Icons.person),
+                          border: InputBorder.none,
+                          hintText: 'Vaš Email'),
+                      //dodat ikone ne valja prazno
                     ),
                   ),
                 ),
@@ -76,11 +88,14 @@ class _LoginPageState extends State<LoginPage> {
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12)),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
+                    padding: const EdgeInsets.only(left: 10.0),
                     child: TextField(
                       obscureText: true,
                       decoration: InputDecoration(
-                          border: InputBorder.none, hintText: 'Vaš Password'),
+                          prefixIcon: Icon(Icons.password),
+                          border: InputBorder.none,
+                          hintText: 'Vaš Password'),
+                      //dodati validacije!
                     ),
                   ),
                 ),

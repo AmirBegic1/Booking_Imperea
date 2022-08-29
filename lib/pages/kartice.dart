@@ -5,7 +5,7 @@ Widget Hoteli(String imgUrl, String hotelName, String location, int rating) {
     margin: EdgeInsets.only(right: 22.0),
     clipBehavior: Clip.antiAlias,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(30.0),
+      borderRadius: BorderRadius.circular(20.0),
     ),
     elevation: 0.0,
     child: InkWell(
@@ -29,7 +29,7 @@ Widget Hoteli(String imgUrl, String hotelName, String location, int rating) {
                   for (var i = 0; i < rating; i++)
                     Icon(
                       Icons.star,
-                      color: Color(0xFFFE8C68),
+                      color: Colors.blue,
                     ),
                 ],
               ),

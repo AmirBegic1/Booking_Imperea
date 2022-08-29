@@ -30,6 +30,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_social_button: any
+  api_cache_manager: ^1.0.2
+  snippet_coder_utils: ^1.0.12
 
 
   # The following adds the Cupertino Icons font to your application.
