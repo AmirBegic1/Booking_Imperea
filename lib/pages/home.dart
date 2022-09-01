@@ -1,7 +1,12 @@
 import 'package:booking/pages/NavBar.dart';
+import 'package:booking/pages/NavBar2.dart';
 import 'package:booking/pages/atrakcije.dart';
-import 'package:booking/pages/kartice.dart';
+import 'package:booking/pages/dobrodosli.dart';
+import 'package:booking/pages/login.dart';
+
 import 'package:booking/pages/smjestaji.dart';
+import 'package:booking/pages/validacija_dodavanja.dart';
+import 'package:booking/services/shared_service.dart';
 import 'package:flutter/material.dart';
 
 class GlavnaStranica extends StatefulWidget {
@@ -16,8 +21,15 @@ class _GlavnaStranicaState extends State<GlavnaStranica>
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 2, vsync: this);
+    var status;
+    if (SharedService.isLoggedIn == true) {
+      status = NavBar();
+    } else {
+      status = NavBar2();
+    }
+    ;
     return Scaffold(
-        drawer: NavBar(),
+        drawer: status,
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.black),
           centerTitle: true,

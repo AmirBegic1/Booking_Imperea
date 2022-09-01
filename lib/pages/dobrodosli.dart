@@ -1,12 +1,21 @@
+import 'package:booking/pages/home.dart';
 import 'package:booking/pages/login.dart';
-import 'package:booking/pages/register.dart';
+import 'package:booking/pages/validacija_dodavanja.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  @override
+  void initState() {}
+
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -29,7 +38,7 @@ class WelcomeScreen extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => WelcomeScreen(),
+                  builder: (context) => GlavnaStranica(),
                 ));
           },
           icon: Icon(
@@ -132,13 +141,7 @@ class WelcomeScreen extends StatelessWidget {
                         fontSize: 16,
                         color: Colors.blue),
                   ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => RegisterScreen())),
-                    );
-                  },
+                  onTap: () {},
                 )
               ],
             )

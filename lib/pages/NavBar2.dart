@@ -13,11 +13,11 @@ import 'package:flutter/material.dart';
 import '../model/login_request_model.dart';
 import '../services/api_service.dart';
 
-class NavBar extends StatefulWidget {
-  const NavBar({Key? key}) : super(key: key);
+class NavBar2 extends StatefulWidget {
+  const NavBar2({Key? key}) : super(key: key);
 
   @override
-  State<NavBar> createState() => _NavBarState();
+  State<NavBar2> createState() => _NavBarState2();
 }
 
 Future<String> getUserProfile() async {
@@ -26,7 +26,7 @@ Future<String> getUserProfile() async {
   return userRes;
 }
 
-class _NavBarState extends State<NavBar> {
+class _NavBarState2 extends State<NavBar2> {
   @override
   void initState() {
     super.initState();
@@ -49,16 +49,10 @@ class _NavBarState extends State<NavBar> {
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.description),
-            title: Text('Dodaj objekat'),
-            onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: ((context) => ValidacijaPage()))),
-          ),
-          Divider(),
-          ListTile(
-              title: Text('Odjavi se'),
+              title: Text('Logiraj se'),
               leading: Icon(Icons.exit_to_app),
-              onTap: () => SharedService.logout(context)),
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(builder: ((context) => LoginPage())))),
           Divider(),
           ListTile(
             title: Text('Exit'),
