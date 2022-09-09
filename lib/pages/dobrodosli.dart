@@ -1,6 +1,7 @@
 import 'package:booking/pages/home.dart';
-import 'package:booking/pages/login.dart';
-import 'package:booking/pages/validacija_dodavanja.dart';
+
+import 'package:booking/pages/login_bottom_sheet/login_bottom.dart';
+import 'package:booking/pages/Dodavanje%20Hotela/validacija_dodavanja.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -100,29 +101,27 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   shape: RoundedRectangleBorder(
                       side: BorderSide(color: Colors.grey),
                       borderRadius: BorderRadius.circular(50)),
-                  child: Text(
+                  child: const Text(
                     "Prijavi se sa Facebook",
                     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 19),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 MaterialButton(
                   minWidth: double.infinity,
                   height: 55,
                   color: Color.fromARGB(255, 211, 234, 245),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginPage(),
-                        ));
-                  },
+                  onPressed: () => showModalBottomSheet(
+                      enableDrag: true,
+                      isDismissible: true,
+                      context: context,
+                      builder: (_) => LoginSheet()),
                   shape: RoundedRectangleBorder(
                       side: BorderSide(color: Colors.transparent),
                       borderRadius: BorderRadius.circular(50)),
-                  child: Text(
+                  child: const Text(
                     "Nastavi na prijavu ->",
                     style: TextStyle(
                         fontWeight: FontWeight.w600,

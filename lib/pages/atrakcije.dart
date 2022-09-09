@@ -4,10 +4,10 @@ class AtrakcijeScreen extends StatefulWidget {
   const AtrakcijeScreen({Key? key}) : super(key: key);
 
   @override
-  State<AtrakcijeScreen> createState() => _AtrakcijeScreen();
+  State<AtrakcijeScreen> createState() => _AtrakcijeScreenState();
 }
 
-class _AtrakcijeScreen extends State<AtrakcijeScreen> {
+class _AtrakcijeScreenState extends State<AtrakcijeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold();

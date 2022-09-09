@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
-import 'package:booking/model/register_request_model.dart';
-import 'package:booking/model/validacija_request_model.dart';
+import 'package:booking/model/Register/register_request_model.dart';
+import 'package:booking/model/ValidacijaUsera/validacija_request_model.dart';
 import 'package:booking/pages/home.dart';
 
 import 'package:booking/services/shared_service.dart';
@@ -12,8 +12,8 @@ import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:snippet_coder_utils/hex_color.dart';
 import 'package:flutter/src/widgets/icon.dart';
 
-import '../config.dart';
-import '../services/api_service.dart';
+import '../../config.dart';
+import '../../services/api_service.dart';
 
 class ValidacijaPage extends StatefulWidget {
   ValidacijaPage({Key? key}) : super(key: key);
@@ -45,35 +45,10 @@ class _ValidacijaPage extends State<ValidacijaPage> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text(
-            "BOOKING",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.blue,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          elevation: 0,
-          brightness: Brightness.light,
-          backgroundColor: Colors.white,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: ((context) => GlavnaStranica())));
-            },
-            icon: Icon(
-              Icons.arrow_back_ios,
-              size: 20,
-              color: Colors.black,
-            ),
-          ),
-        ),
         body: ProgressHUD(
           child: Form(
             key: globalFormKey,
-            child: _loginUI(context),
+            child: _validacijaUI(context),
           ),
           inAsyncCall: isAPIcallProcess,
           opacity: 0.3,
@@ -83,7 +58,7 @@ class _ValidacijaPage extends State<ValidacijaPage> {
     );
   }
 
-  Widget _loginUI(BuildContext context) {
+  Widget _validacijaUI(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -122,58 +97,6 @@ class _ValidacijaPage extends State<ValidacijaPage> {
             padding: const EdgeInsets.only(bottom: 10),
             child: FormHelper.inputFieldWidget(
               context,
-              "nesto",
-              "  Grad",
-              (onValidateVal) {
-                if (onValidateVal.isEmpty) {
-                  return 'Ime grada ne može biti prazno.';
-                }
-
-                return null;
-              },
-              (onSavedVal) => {
-                fullName = onSavedVal,
-              },
-              initialValue: "",
-              obscureText: false,
-              borderFocusColor: Colors.black,
-              prefixIconColor: Colors.white,
-              borderColor: Colors.grey,
-              textColor: Colors.black,
-              hintColor: Colors.grey.withOpacity(0.7),
-              borderRadius: 10,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: FormHelper.inputFieldWidget(
-              context,
-              "fullName",
-              "  Vaša adresa",
-              (onValidateVal) {
-                if (onValidateVal.isEmpty) {
-                  return 'Morate unijeti Vašu adresu! .';
-                }
-
-                return null;
-              },
-              (onSavedVal) => {
-                fullName = onSavedVal,
-              },
-              initialValue: "",
-              obscureText: false,
-              borderFocusColor: Colors.black,
-              prefixIconColor: Colors.white,
-              borderColor: Colors.grey,
-              textColor: Colors.black,
-              hintColor: Colors.grey.withOpacity(0.7),
-              borderRadius: 10,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: FormHelper.inputFieldWidget(
-              context,
               "jib",
               "  JMBG",
               (onValidateVal) {
@@ -206,25 +129,17 @@ class _ValidacijaPage extends State<ValidacijaPage> {
                     isAPIcallProcess = true;
                   });
 
-                  ValidacijaRequestModel model = ValidacijaRequestModel(
-                    id: id!,
-                    userId: userId!,
-                    createdAt: createdAt!,
-                    updatedAt: updatedAt!,
-                    isDeleted: isDeleted!,
+                  Validacija model = Validacija(
                     jib: jib!,
-                    fullName: fullName!,
-                    email: email!,
-                    isApproved: isApproved!,
                   );
 
-                  APIService.validacija(model).then(
+                  APIService.slanjeValidacije(model).then(
                     (response) {
                       setState(() {
                         isAPIcallProcess = false;
                       });
 
-                      if (response.requestResult != null) {
+                      if (response) {
                         FormHelper.showSimpleAlertDialog(
                           context,
                           Config.appName,
@@ -242,7 +157,7 @@ class _ValidacijaPage extends State<ValidacijaPage> {
                         FormHelper.showSimpleAlertDialog(
                           context,
                           Config.appName,
-                          response.errorCode,
+                          "Greska sa serverom ili nista logirani",
                           "OK",
                           () {
                             Navigator.of(context).pop();

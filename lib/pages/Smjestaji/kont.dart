@@ -1,4 +1,9 @@
+import 'package:booking/config.dart';
+import 'package:booking/model/ValidacijaUsera/validacija_request_model.dart';
+
+import 'package:booking/services/api_service.dart';
 import 'package:flutter/material.dart';
+import 'package:snippet_coder_utils/FormHelper.dart';
 
 class Kont extends StatefulWidget {
   Kont({Key? key}) : super(key: key);
@@ -8,6 +13,19 @@ class Kont extends StatefulWidget {
 }
 
 class _KontState extends State<Kont> {
+  bool isAPIcallProcess = false;
+  bool hidePassword = true;
+  GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
+  String? jib;
+  String? id;
+  String? userId;
+  String? createdAt;
+  String? updatedAt;
+  String? isDeleted;
+  String? fullName;
+  String? email;
+  String? isApproved;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -322,11 +340,11 @@ class _KontState extends State<Kont> {
                                                 bottom: 10),
                                             child: Row(
                                               children: [
-                                                Icon(
+                                                const Icon(
                                                   Icons.child_care,
                                                   color: Colors.grey,
                                                 ),
-                                                Text(
+                                                const Text(
                                                   "  Igralište za djecu",
                                                   style: TextStyle(
                                                       color: Colors.black),
@@ -452,12 +470,12 @@ class _KontState extends State<Kont> {
                             )
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Row(
                           children: [
-                            Text(
+                            const Text(
                               "           TOTAL                                                ",
                               style: TextStyle(
                                   color: Colors.black,
@@ -479,23 +497,47 @@ class _KontState extends State<Kont> {
                           padding: const EdgeInsets.only(left: 170),
                           child: SizedBox(
                             width: double.infinity,
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0)),
-                              color: Color.fromARGB(255, 229, 237, 243),
-                              textColor: Colors.blue,
-                              child: Text(
-                                "Rezerviši",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 16.0,
-                                horizontal: 32.0,
-                              ),
-                              onPressed: () {},
+                            child: FormHelper.submitButton(
+                              "Rezerviši",
+                              () {
+                                if (validateAndSave()) {
+                                  setState(() {
+                                    isAPIcallProcess = true;
+                                  });
+
+                                  Validacija model = Validacija(
+                                    jib: jib!,
+                                  );
+                                  APIService.validacija(model).then(
+                                    (response) {
+                                      setState(() {
+                                        isAPIcallProcess = false;
+                                      });
+                                      if (response.isEmpty) {
+                                        Navigator.pushNamedAndRemoveUntil(
+                                          context,
+                                          '/home',
+                                          (route) => false,
+                                        );
+                                      } else {
+                                        FormHelper.showSimpleAlertDialog(
+                                          context,
+                                          Config.appName,
+                                          "Profil vam još nije potvrđen od strane admina",
+                                          "OK",
+                                          () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        );
+                                      }
+                                    },
+                                  );
+                                }
+                              },
+                              btnColor: Color.fromARGB(255, 217, 229, 240),
+                              borderColor: Colors.transparent,
+                              txtColor: Colors.blue,
+                              borderRadius: 10,
                             ),
                           ),
                         ),
@@ -510,5 +552,14 @@ class _KontState extends State<Kont> {
         ),
       ),
     );
+  }
+
+  bool validateAndSave() {
+    final form = globalFormKey.currentState;
+    if (form!.validate()) {
+      form.save();
+      return true;
+    }
+    return false;
   }
 }
