@@ -1,21 +1,12 @@
-import 'dart:convert';
-
-ProfilModel profilModel(String str) => ProfilModel.fromJson(json.decode(str));
-
-class ProfilModel {
+class UserDetails {
   bool? success;
   String? errorCode;
   RequestResult? requestResult;
   Payload? payload;
 
-  ProfilModel({
-    this.success,
-    this.errorCode,
-    this.requestResult,
-    this.payload,
-  });
+  UserDetails({this.success, this.errorCode, this.requestResult, this.payload});
 
-  ProfilModel.fromJson(Map<String, dynamic> json) {
+  UserDetails.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     errorCode = json['errorCode'];
     requestResult = json['requestResult'] != null

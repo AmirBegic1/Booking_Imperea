@@ -77,7 +77,6 @@ class APIService {
     var loginDetails = await SharedService.loginDetails();
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ${loginDetails!.payload.token}'
     };
 
     var url = Uri.parse(
@@ -115,7 +114,6 @@ class APIService {
 
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ${loginDetails!.payload.token}'
     };
 
     var url =
