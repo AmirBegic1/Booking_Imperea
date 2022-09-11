@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => const GlavnaStranica(),
           '/home': (context) => const GlavnaStranica(),
           '/dobrodosli': (context) => WelcomeScreen(),
-          '/proces_verifikaije': (context) => ProcesVerifikacije(),
+          '/proces_verifikaije': (context) => const ProcesVerifikacije(),
           DetailScreen.routeName: (context) => DetailScreen(),
         },
       ),

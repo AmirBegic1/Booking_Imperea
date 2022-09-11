@@ -1,9 +1,12 @@
 import 'package:booking/config.dart';
 import 'package:booking/model/ValidacijaUsera/validacija_request_model.dart';
+import 'package:booking/pages/Smjestaji/result.dart';
 
 import 'package:booking/services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
+
+import '../../model/ValidacijaUsera/validacija_response_model.dart';
 
 class Kont extends StatefulWidget {
   Kont({Key? key}) : super(key: key);
@@ -505,20 +508,22 @@ class _KontState extends State<Kont> {
                                     isAPIcallProcess = true;
                                   });
 
-                                  Validacija model = Validacija(
-                                    jib: jib!,
+                                  validacijaResponseModel model =
+                                      validacijaResponseModel(
+                                    isApproved: true,
                                   );
                                   APIService.validacija(model).then(
                                     (response) {
                                       setState(() {
                                         isAPIcallProcess = false;
                                       });
-                                      if (response.isEmpty) {
-                                        Navigator.pushNamedAndRemoveUntil(
-                                          context,
-                                          '/home',
-                                          (route) => false,
-                                        );
+                                      if (response == true) {
+                                        () => showModalBottomSheet(
+                                            enableDrag: true,
+                                            isDismissible: true,
+                                            context: context,
+                                            builder: (_) =>
+                                                const ZahjtevRezervacije());
                                       } else {
                                         FormHelper.showSimpleAlertDialog(
                                           context,

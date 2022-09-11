@@ -11,6 +11,7 @@ import 'package:booking/services/shared_service.dart';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../model/Login/login_request_model.dart';
 import '../../services/api_service.dart';
 
@@ -59,14 +60,17 @@ class _NavBarState extends State<NavBar> {
                   MaterialPageRoute(builder: ((context) => GlavnaStranica()))),
             ),
             Divider(),
-            Divider(),
             ListTile(
-                title: Text('Odjavi se'),
+                title: Text(
+                  'Odjavi se',
+                  style: TextStyle(color: Colors.blue),
+                ),
                 leading: Icon(Icons.exit_to_app),
                 onTap: () => SharedService.logout(context)),
             Divider(),
             ListTile(
-              title: Text('Exit'),
+              title:
+                  Text('Exit', style: TextStyle(fontWeight: FontWeight.bold)),
               leading: Icon(Icons.exit_to_app),
               onTap: () => exit(0),
             ),

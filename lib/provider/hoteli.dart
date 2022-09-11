@@ -8,26 +8,27 @@ class Hoteli with ChangeNotifier {
         id: 'p1',
         title: 'Hotel Kont Residence',
         price: 120,
-        imageUrl: 'assets/kont.png',
+        imageUrl: 'assets/kontx3.png',
         lokacija: 'Sarajevo'),
     ListaHotela(
         id: 'p2',
         title: 'EM Apartment',
         price: 120,
-        imageUrl: 'assets/em.png',
+        imageUrl: 'assets/em3.png',
         lokacija: 'Sarajevo'),
     ListaHotela(
         id: 'p3',
         title: 'Apartmani Seyda',
         price: 120,
-        imageUrl: 'assets/seyda.png',
+        imageUrl: 'assets/seyda3.png',
         lokacija: 'Zenica'),
     ListaHotela(
-        id: 'p4',
-        title: 'Promenade Inn',
-        price: 120,
-        imageUrl: 'assets/promenadex3.png',
-        lokacija: 'Tuzla'),
+      id: 'p4',
+      title: 'Promenade Inn',
+      price: 120,
+      imageUrl: 'assets/promenadex3.png',
+      lokacija: 'Tuzla',
+    ),
   ];
 
   List<ListaHotela> get hoteli {

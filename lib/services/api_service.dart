@@ -60,10 +60,6 @@ class APIService {
     );
 
     if (response.statusCode == 200) {
-      await SharedService.setValidacijaDetails(
-        validacijaModelFromJson(response.body),
-      );
-
       print('proslo ono novo');
       return true;
     } else {
@@ -72,8 +68,7 @@ class APIService {
     }
   }
 
-  static Future<validacijaResponseModel> saljiValidaciju(
-      Validacija model) async {
+  static Future<String> saljiValidaciju(Validacija model) async {
     var loginDetails = await SharedService.loginDetails();
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
@@ -87,14 +82,13 @@ class APIService {
       headers: requestHeaders,
       body: jsonEncode(model.toJson()),
     );
-    return validacijaModelFromJson(response.body);
+    return response.body;
   }
 
-  static Future<String> validacija(Validacija model) async {
+  static Future<String> validacija(validacijaResponseModel model) async {
     var loginDetails = await SharedService.loginDetails();
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ${loginDetails!.payload}'
     };
 
     var url = Uri.parse(

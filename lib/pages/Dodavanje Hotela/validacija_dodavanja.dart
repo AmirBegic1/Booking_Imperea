@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:booking/model/Register/register_request_model.dart';
 import 'package:booking/model/ValidacijaUsera/validacija_request_model.dart';
 import 'package:booking/pages/home.dart';
+import 'package:booking/pages/proces_verifikacije.dart';
 
 import 'package:booking/services/shared_service.dart';
 import 'package:flutter/gestures.dart';
@@ -139,18 +140,19 @@ class _ValidacijaPage extends State<ValidacijaPage> {
                         isAPIcallProcess = false;
                       });
 
-                      if (response) {
+                      if (response != null) {
                         FormHelper.showSimpleAlertDialog(
                           context,
-                          Config.appName,
+                          Config.appName.toUpperCase(),
                           "Upješno ste poslali zahtjev za validaciju!",
                           "OK",
                           () {
-                            Navigator.pushNamedAndRemoveUntil(
-                              context,
-                              '/proces_verifikacije',
-                              (route) => false,
-                            );
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>
+                                      const ProcesVerifikacije(),
+                                ));
                           },
                         );
                       } else {
