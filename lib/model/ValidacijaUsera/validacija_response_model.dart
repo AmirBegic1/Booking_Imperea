@@ -19,7 +19,7 @@ class validacijaResponseModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['isApproved'] = this.isApproved;
+    data['isApproved'] = isApproved;
     return data;
   }
 }

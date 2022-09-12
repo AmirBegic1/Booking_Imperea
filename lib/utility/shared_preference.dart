@@ -9,7 +9,7 @@ class UserPreferences {
   Future<bool> saveUser(LoginResponseModel user) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    prefs.setString('id', user.payload!.token.toString());
+    prefs.setString('token', user.payload!.token.toString());
 
     return prefs.commit();
   }
@@ -17,7 +17,7 @@ class UserPreferences {
   Future<ProfilModel> getUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    String? token = prefs.getString("payload");
+    String? token = prefs.getString("token");
 
     return ProfilModel();
   }

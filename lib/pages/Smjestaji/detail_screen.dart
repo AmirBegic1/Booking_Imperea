@@ -1,13 +1,16 @@
 import 'package:booking/pages/Smjestaji/result.dart';
 import 'package:booking/provider/hoteli.dart';
+import 'package:booking/services/shared_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 
 import '../../config.dart';
 import '../../model/ValidacijaUsera/validacija_request_model.dart';
 import '../../model/ValidacijaUsera/validacija_response_model.dart';
 import '../../services/api_service.dart';
+import '../login_bottom_sheet/login_bottom.dart';
 
 class DetailScreen extends StatefulWidget {
   // final String id;
@@ -38,6 +41,13 @@ class _DetailScreenState extends State<DetailScreen> {
   String? isApproved;
 
   @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    SharedService.isLoggedIn();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final hotelId = ModalRoute.of(context)?.settings.arguments as String;
     final lista = Provider.of<Hoteli>(context, listen: false).findById(hotelId);
@@ -49,7 +59,7 @@ class _DetailScreenState extends State<DetailScreen> {
         title: const Text(
           "BOOKING",
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.blue,
             fontWeight: FontWeight.bold,
           ),
@@ -110,7 +120,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         ),
                         const Text(
                           " 2",
-                          style: const TextStyle(
+                          style: TextStyle(
                               color: Colors.grey,
                               fontSize: 15.0,
                               fontWeight: FontWeight.bold),
@@ -190,7 +200,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       children: [
                         const Text(
                           "119 KM    ",
-                          style: const TextStyle(
+                          style: TextStyle(
                               color: Colors.grey,
                               fontWeight: FontWeight.bold,
                               decoration: TextDecoration.lineThrough,
@@ -225,7 +235,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       children: <Widget>[
                         const Text(
                           "Opis",
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontWeight: FontWeight.w600, fontSize: 17.0),
                         ),
                         const SizedBox(height: 10.0),
@@ -239,7 +249,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         const Text(
                           "Hotel Koncept Residence nalazi se u Sarajevu, na 6 km od Sarajevskog ratnog tunela, te nudi restoran, besplatno privatno parkiralište, bar i zajednički salon. U objektu su dostupne obiteljske sobe i terasa. Recepcija je otvorena 24 sata, a također su dostupne posluga u sobu i mjenjačnica. ",
                           textAlign: TextAlign.justify,
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontWeight: FontWeight.w300, fontSize: 17.0),
                         ),
                         const SizedBox(height: 10.0),
@@ -275,7 +285,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                                 ),
                                                 const Text(
                                                   "  8 rooms",
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                       color: Colors.black),
                                                 ),
                                               ],
@@ -292,7 +302,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                                 ),
                                                 const Text(
                                                   "  Free WiFi",
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                       color: Colors.black),
                                                 ),
                                               ],
@@ -309,7 +319,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                                 ),
                                                 const Text(
                                                   "  Minibar",
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                       color: Colors.black),
                                                 ),
                                               ],
@@ -326,7 +336,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                                 ),
                                                 const Text(
                                                   "  Dvorište",
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                       color: Colors.black),
                                                 ),
                                               ],
@@ -343,7 +353,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                                 ),
                                                 const Text(
                                                   "  Besplatan parking",
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                       color: Colors.black),
                                                 ),
                                               ],
@@ -377,7 +387,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                                 ),
                                                 const Text(
                                                   "  PlayStation",
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                       color: Colors.black),
                                                 ),
                                               ],
@@ -394,7 +404,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                                 ),
                                                 const Text(
                                                   "  Terasa",
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                       color: Colors.black),
                                                 ),
                                               ],
@@ -411,7 +421,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                                 ),
                                                 const Text(
                                                   "  Xbox",
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                       color: Colors.black),
                                                 ),
                                               ],
@@ -428,7 +438,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                                 ),
                                                 const Text(
                                                   "  Klima",
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                       color: Colors.black),
                                                 ),
                                               ],
@@ -477,7 +487,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             ),
                             const Text(
                               "306 KM",
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: Colors.black,
                               ),
                               textAlign: TextAlign.end,

@@ -1,3 +1,4 @@
+import 'package:booking/model/ProfilUser/profil_response_model.dart';
 import 'package:booking/pages/Smjestaji/detail_screen.dart';
 
 import 'package:booking/pages/dobrodosli.dart';
@@ -23,8 +24,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (ctx) => Hoteli(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: Hoteli()),
+        ChangeNotifierProvider.value(value: ProfilModel()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {

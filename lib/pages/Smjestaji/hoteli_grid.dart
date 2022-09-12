@@ -1,3 +1,4 @@
+import 'package:booking/model/ProfilUser/profil_response_model.dart';
 import 'package:booking/pages/Smjestaji/ispisHotela.dart';
 import 'package:booking/provider/hoteli.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class HoteliGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hoteliData = Provider.of<Hoteli>(context);
+    final profil = Provider.of<ProfilModel>(context);
     final lista = hoteliData.hoteli;
 
     return GridView.builder(

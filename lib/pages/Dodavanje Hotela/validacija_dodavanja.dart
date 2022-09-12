@@ -140,7 +140,7 @@ class _ValidacijaPage extends State<ValidacijaPage> {
                         isAPIcallProcess = false;
                       });
 
-                      if (response != null) {
+                      if (response) {
                         FormHelper.showSimpleAlertDialog(
                           context,
                           Config.appName.toUpperCase(),

@@ -1,4 +1,6 @@
-class ListaHotela {
+import 'package:flutter/cupertino.dart';
+
+class ListaHotela with ChangeNotifier {
   final String id;
   final String title;
 

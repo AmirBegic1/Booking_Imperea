@@ -23,10 +23,10 @@ class _SmjestajScreenState extends State<SmjestajScreen> {
                 height: 18,
               ),
               const TextField(
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: "Traži destinaciju",
                   hintText: "Sarajevo",
-                  border: const OutlineInputBorder(),
+                  border: OutlineInputBorder(),
                   prefixIcon: Icon(
                     Icons.place,
                     color: Colors.black,
@@ -41,7 +41,7 @@ class _SmjestajScreenState extends State<SmjestajScreen> {
                   labelText: "Odaberi datum",
                   hintText: "18 Apr - 20 Apr",
                   border: OutlineInputBorder(),
-                  suffixIcon: const Icon(
+                  suffixIcon: Icon(
                     Icons.date_range,
                     color: Colors.black,
                   ),
@@ -67,8 +67,7 @@ class _SmjestajScreenState extends State<SmjestajScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 200),
                 child: ElevatedButton(
-                    child: const Text("Traži",
-                        style: const TextStyle(fontSize: 20)),
+                    child: const Text("Traži", style: TextStyle(fontSize: 20)),
                     style: ButtonStyle(
                       foregroundColor:
                           MaterialStateProperty.all<Color>(Colors.blueAccent),
@@ -101,8 +100,8 @@ class _SmjestajScreenState extends State<SmjestajScreen> {
                 height: 0,
               ),
               //ovdje ubacit gridove
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
+              const Padding(
+                padding: EdgeInsets.only(top: 20),
                 child: HoteliGrid(),
               ),
             ],

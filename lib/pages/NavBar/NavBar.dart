@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'dart:io';
+import 'package:booking/model/Login/login_response_model.dart';
 import 'package:booking/model/ProfilUser/profil_response_model.dart';
 import 'package:booking/pages/dobrodosli.dart';
 
@@ -22,22 +23,17 @@ class NavBar extends StatefulWidget {
   State<NavBar> createState() => _NavBarState();
 }
 
-Future<String> getUserProfile() async {
-  dynamic userRes;
-  userRes = await APIService.getUserProfile();
-  return userRes;
-}
-
 class _NavBarState extends State<NavBar> {
-  late Future<ProfilModel> dajUsera;
-  APIService api = APIService();
-
   @override
   void initState() {
     super.initState();
   }
 
   Widget build(BuildContext context) {
+    ProfilModel profilModel = new ProfilModel();
+    String? email;
+    String? password;
+    String? token;
     return SafeArea(
       child: Drawer(
         child: ListView(
@@ -54,10 +50,12 @@ class _NavBarState extends State<NavBar> {
               ),
             ),
             ListTile(
-              title: Text("Home"),
+              title: Text("home"),
               leading: Icon(Icons.home),
-              onTap: () => Navigator.push(context,
-                  MaterialPageRoute(builder: ((context) => GlavnaStranica()))),
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => const GlavnaStranica()))),
             ),
             Divider(),
             ListTile(
@@ -67,6 +65,22 @@ class _NavBarState extends State<NavBar> {
                 ),
                 leading: Icon(Icons.exit_to_app),
                 onTap: () => SharedService.logout(context)),
+            Divider(),
+            ListTile(
+                title: Text(
+                  'PRovjera',
+                  style: TextStyle(color: Colors.blue),
+                ),
+                leading: Icon(Icons.exit_to_app),
+                onTap: () => APIService.getUserProfile()),
+            Divider(),
+            ListTile(
+                title: Text(
+                  'Jel logiran',
+                  style: TextStyle(color: Colors.blue),
+                ),
+                leading: Icon(Icons.exit_to_app),
+                onTap: () => SharedService.isLoggedIn()),
             Divider(),
             ListTile(
               title:

@@ -18,20 +18,17 @@ class LoginResponseModel {
 
   LoginResponseModel.fromJson(Map<String, dynamic> json) {
     payload =
-        json['payload'] != null ? new Payload.fromJson(json['payload']) : null;
-    success = json['success'];
-    errorCode = json['errorCode'];
-    requestResult = json['requestResult'];
+        json['payload'] != null ? Payload.fromJson(json['payload']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.payload != null) {
-      data['payload'] = this.payload!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (payload != null) {
+      data['payload'] = payload!.toJson();
     }
-    data['success'] = this.success;
-    data['errorCode'] = this.errorCode;
-    data['requestResult'] = this.requestResult;
+    data['success'] = success;
+    data['errorCode'] = errorCode;
+    data['requestResult'] = requestResult;
     return data;
   }
 }
@@ -46,7 +43,7 @@ class Payload {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['token'] = token;
     return data;
   }
