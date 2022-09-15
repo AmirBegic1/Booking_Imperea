@@ -1,19 +1,11 @@
-import 'dart:convert';
-
 import 'dart:io';
-import 'package:booking/model/Login/login_response_model.dart';
-import 'package:booking/model/ProfilUser/profil_response_model.dart';
-import 'package:booking/pages/dobrodosli.dart';
 
 import 'package:booking/pages/home.dart';
 
-import 'package:booking/pages/Dodavanje%20Hotela/validacija_dodavanja.dart';
 import 'package:booking/services/shared_service.dart';
-import 'package:dio/dio.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../../model/Login/login_request_model.dart';
+
 import '../../services/api_service.dart';
 
 class NavBar extends StatefulWidget {
@@ -30,10 +22,6 @@ class _NavBarState extends State<NavBar> {
   }
 
   Widget build(BuildContext context) {
-    ProfilModel profilModel = new ProfilModel();
-    String? email;
-    String? password;
-    String? token;
     return SafeArea(
       child: Drawer(
         child: ListView(
@@ -50,42 +38,46 @@ class _NavBarState extends State<NavBar> {
               ),
             ),
             ListTile(
-              title: Text("home"),
-              leading: Icon(Icons.home),
+              title: const Text("home"),
+              leading: const Icon(Icons.home),
               onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: ((context) => const GlavnaStranica()))),
             ),
-            Divider(),
+            const Divider(),
             ListTile(
-                title: Text(
+                title: const Text(
                   'Odjavi se',
                   style: TextStyle(color: Colors.blue),
                 ),
-                leading: Icon(Icons.exit_to_app),
+                leading: const Icon(Icons.exit_to_app),
                 onTap: () => SharedService.logout(context)),
-            Divider(),
+            const Divider(),
             ListTile(
-                title: Text(
-                  'PRovjera',
-                  style: TextStyle(color: Colors.blue),
-                ),
-                leading: Icon(Icons.exit_to_app),
-                onTap: () => APIService.getUserProfile()),
-            Divider(),
+              title: const Text(
+                'Login',
+                style: TextStyle(color: Colors.blue),
+              ),
+              leading: const Icon(Icons.exit_to_app),
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => const GlavnaStranica()))),
+            ),
+            const Divider(),
             ListTile(
-                title: Text(
+                title: const Text(
                   'Jel logiran',
-                  style: TextStyle(color: Colors.blue),
+                  style: const TextStyle(color: Colors.blue),
                 ),
-                leading: Icon(Icons.exit_to_app),
+                leading: const Icon(Icons.exit_to_app),
                 onTap: () => SharedService.isLoggedIn()),
-            Divider(),
+            const Divider(),
             ListTile(
-              title:
-                  Text('Exit', style: TextStyle(fontWeight: FontWeight.bold)),
-              leading: Icon(Icons.exit_to_app),
+              title: const Text('Exit',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              leading: const Icon(Icons.exit_to_app),
               onTap: () => exit(0),
             ),
           ],

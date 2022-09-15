@@ -10,6 +10,6 @@ class AtrakcijeScreen extends StatefulWidget {
 class _AtrakcijeScreenState extends State<AtrakcijeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold();
   }
 }

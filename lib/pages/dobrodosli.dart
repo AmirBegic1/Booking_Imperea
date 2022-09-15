@@ -1,10 +1,8 @@
 import 'package:booking/pages/home.dart';
 
 import 'package:booking/pages/login_bottom_sheet/login_bottom.dart';
-import 'package:booking/pages/Dodavanje%20Hotela/validacija_dodavanja.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -23,10 +21,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "BOOKING",
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.blue,
             fontWeight: FontWeight.bold,
           ),
@@ -39,10 +37,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => GlavnaStranica(),
+                  builder: (context) => const GlavnaStranica(),
                 ));
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             size: 20,
             color: Colors.black,
@@ -53,27 +51,27 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           child: Container(
         width: double.infinity,
         height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Column(
               children: <Widget>[
-                Text(
+                const Text(
                   "Dobrodošli",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 40,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   "na LolBooking servis",
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.black, fontSize: 17),
+                  style: const TextStyle(color: Colors.black, fontSize: 17),
                 ),
               ],
             ),
@@ -84,14 +82,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   height: 55,
                   onPressed: () {},
                   shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.grey),
+                      side: const BorderSide(color: Colors.grey),
                       borderRadius: BorderRadius.circular(50)),
-                  child: Text(
+                  child: const Text(
                     "Prijavi se sa Google",
                     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 19),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 MaterialButton(
@@ -99,7 +97,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   height: 55,
                   onPressed: () {},
                   shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.grey),
+                      side: const BorderSide(color: Colors.grey),
                       borderRadius: BorderRadius.circular(50)),
                   child: const Text(
                     "Prijavi se sa Facebook",
@@ -112,14 +110,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 MaterialButton(
                   minWidth: double.infinity,
                   height: 55,
-                  color: Color.fromARGB(255, 211, 234, 245),
+                  color: const Color.fromARGB(255, 211, 234, 245),
                   onPressed: () => showModalBottomSheet(
                       enableDrag: true,
                       isDismissible: true,
                       context: context,
                       builder: (_) => LoginSheet()),
                   shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.transparent),
+                      side: const BorderSide(color: Colors.transparent),
                       borderRadius: BorderRadius.circular(50)),
                   child: const Text(
                     "Nastavi na prijavu ->",
@@ -129,11 +127,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         color: Colors.blueAccent),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 GestureDetector(
-                  child: Text(
+                  child: const Text(
                     "Registruj se ->",
                     style: TextStyle(
                         fontWeight: FontWeight.w600,

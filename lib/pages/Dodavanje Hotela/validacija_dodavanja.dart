@@ -1,17 +1,10 @@
-import 'dart:ffi';
-
-import 'package:booking/model/Register/register_request_model.dart';
 import 'package:booking/model/ValidacijaUsera/validacija_request_model.dart';
-import 'package:booking/pages/home.dart';
+
 import 'package:booking/pages/proces_verifikacije.dart';
 
-import 'package:booking/services/shared_service.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
-import 'package:snippet_coder_utils/hex_color.dart';
-import 'package:flutter/src/widgets/icon.dart';
 
 import '../../config.dart';
 import '../../services/api_service.dart';
@@ -70,7 +63,7 @@ class _ValidacijaPage extends State<ValidacijaPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: const <Widget>[
               Padding(
-                padding: const EdgeInsets.only(left: 20, top: 20),
+                padding: EdgeInsets.only(left: 20, top: 20),
                 child: Center(
                   child: Text(
                     "Želiš dodati svoj objekat/atrakciju?",

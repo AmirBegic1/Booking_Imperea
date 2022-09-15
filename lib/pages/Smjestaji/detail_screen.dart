@@ -3,14 +3,12 @@ import 'package:booking/provider/hoteli.dart';
 import 'package:booking/services/shared_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:snippet_coder_utils/FormHelper.dart';
 
 import '../../config.dart';
-import '../../model/ValidacijaUsera/validacija_request_model.dart';
-import '../../model/ValidacijaUsera/validacija_response_model.dart';
+
 import '../../services/api_service.dart';
-import '../login_bottom_sheet/login_bottom.dart';
 
 class DetailScreen extends StatefulWidget {
   // final String id;
@@ -524,31 +522,26 @@ class _DetailScreenState extends State<DetailScreen> {
                             child: FormHelper.submitButton(
                               "Rezerviši",
                               () {
-                                validacijaResponseModel model =
-                                    validacijaResponseModel(
-                                  isApproved: true,
-                                );
-                                APIService.validacija(model).then(
+                                APIService.provjeraValidacije().then(
                                   (response) {
                                     setState(() {
                                       isAPIcallProcess = false;
                                     });
-                                    if (response != null) {
-                                      showModalBottomSheet(
-                                          enableDrag: true,
-                                          isDismissible: true,
-                                          context: context,
-                                          builder: (_) => ZahjtevRezervacije());
+                                    if (response) {
+                                      print("opaaaa");
                                     } else {
                                       FormHelper.showSimpleAlertDialog(
-                                        context,
-                                        Config.appName,
-                                        "Profil vam još nije potvrđen od strane admina",
-                                        "OK",
-                                        () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      );
+                                          context,
+                                          Config.appName,
+                                          "Profil vam još nije potvrđen od strane admina",
+                                          "OK", () {
+                                        showModalBottomSheet(
+                                            enableDrag: true,
+                                            isDismissible: true,
+                                            context: context,
+                                            builder: (_) =>
+                                                ZahjtevRezervacije());
+                                      });
                                     }
                                   },
                                 );

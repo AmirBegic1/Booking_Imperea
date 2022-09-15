@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:api_cache_manager/api_cache_manager.dart';
+import 'package:api_cache_manager/models/cache_db_base_model.dart';
 import 'package:api_cache_manager/models/cache_db_model.dart';
 import 'package:booking/domain/GetUser.dart';
 
@@ -42,7 +43,6 @@ class SharedService {
 
       return profilModel(cacheData.syncData);
     }
-
     return null;
   }
 

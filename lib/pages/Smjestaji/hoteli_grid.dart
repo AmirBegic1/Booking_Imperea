@@ -12,6 +12,7 @@ class HoteliGrid extends StatelessWidget {
     final hoteliData = Provider.of<Hoteli>(context);
     final profil = Provider.of<ProfilModel>(context);
     final lista = hoteliData.hoteli;
+    final korisnik = profil.payload;
 
     return GridView.builder(
       scrollDirection: Axis.vertical,

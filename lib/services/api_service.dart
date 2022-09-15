@@ -1,11 +1,14 @@
 import 'dart:convert';
+import 'dart:math';
 
-import 'package:booking/config.dart';
 import 'package:booking/model/Login/login_request_model.dart';
 import 'package:booking/model/Login/login_response_model.dart';
 
 import 'package:booking/model/ValidacijaUsera/validacija_request_model.dart';
+
 import 'package:booking/services/shared_service.dart';
+import 'package:flutter/widgets.dart';
+
 import 'package:http/http.dart' as http;
 
 import '../model/ProfilUser/profil_response_model.dart';
@@ -42,7 +45,7 @@ class APIService {
     }
   }
 
-  static Future<bool> getUserProfile() async {
+  static Future<ProfilModel> getUserProfile() async {
     var loginDetails = await SharedService.loginDetails();
 
     Map<String, String> requestHeaders = {
@@ -59,16 +62,9 @@ class APIService {
     );
 
     if (response.statusCode == 200) {
-      await SharedService.setUserDetails(
-        profilModel(
-          response.body,
-        ),
-      );
-      print(response.body.toString());
-      return true;
+      return ProfilModel.fromJson(json.decode(response.body));
     } else {
-      print(Error);
-      return false;
+      throw "eeee";
     }
   }
 
@@ -104,31 +100,11 @@ class APIService {
     }
   }
 
-  static Future<String> saljiValidaciju(Validacija model) async {
+  static Future<bool> provjeraValidacije() async {
     var loginDetails = await SharedService.loginDetails();
     Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ${loginDetails?.payload?.token}'
-    };
-
-    var url = Uri.parse(
-        "https://dev-api.lolbooking.com/api/v1/identity/upgrade-account");
-
-    var response = await client.post(
-      url,
-      headers: requestHeaders,
-      body: jsonEncode(model.toJson()),
-    );
-    return response.body;
-
-    ///FALIIIIIIIIIIIII IF ! ONAJ DODAJ OD AKANTUA USERA!
-    ///TO OBAVEZNOO!
-  }
-
-  static Future<String> validacija(validacijaResponseModel model) async {
-    var loginDetails = await SharedService.loginDetails();
-    Map<String, String> requestHeaders = {
-      'Content-Type': 'application/json',
     };
 
     var url = Uri.parse(
@@ -138,9 +114,18 @@ class APIService {
       url,
       headers: requestHeaders,
     );
-    //FALII IFF OBAVEZNO IST GORE I RADICE!
-
-    print("eto gaaa ");
-    return response.body;
+    if (response.body == 200) {
+      await SharedService.setValidacijaDetails(
+        validacijaModelFromJson(
+          response.body,
+        ),
+      );
+      print(validacijaResponseModel.fromJson(json.decode(response.body)));
+      return true;
+    } else {
+      print(validacijaResponseModel
+          .fromJson(json.decode(response.body.toString())));
+      return false;
+    }
   }
 }

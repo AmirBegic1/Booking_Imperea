@@ -10,21 +10,21 @@ class UserDetails {
     success = json['success'];
     errorCode = json['errorCode'];
     requestResult = json['requestResult'] != null
-        ? new RequestResult.fromJson(json['requestResult'])
+        ? RequestResult.fromJson(json['requestResult'])
         : null;
     payload =
-        json['payload'] != null ? new Payload.fromJson(json['payload']) : null;
+        json['payload'] != null ? Payload.fromJson(json['payload']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    data['errorCode'] = this.errorCode;
-    if (this.requestResult != null) {
-      data['requestResult'] = this.requestResult!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['success'] = success;
+    data['errorCode'] = errorCode;
+    if (requestResult != null) {
+      data['requestResult'] = requestResult!.toJson();
     }
-    if (this.payload != null) {
-      data['payload'] = this.payload!.toJson();
+    if (payload != null) {
+      data['payload'] = payload!.toJson();
     }
     return data;
   }
@@ -42,9 +42,9 @@ class RequestResult {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['totalResults'] = this.totalResults;
-    data['totalResultsByFilter'] = this.totalResultsByFilter;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['totalResults'] = totalResults;
+    data['totalResultsByFilter'] = totalResultsByFilter;
     return data;
   }
 }
@@ -90,18 +90,18 @@ class Payload {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['email'] = this.email;
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['birthDate'] = this.birthDate;
-    data['gender'] = this.gender;
-    data['tenantId'] = this.tenantId;
-    data['isBlocked'] = this.isBlocked;
-    data['isBusinessUser'] = this.isBusinessUser;
-    data['language'] = this.language;
-    data['userRoles'] = this.userRoles;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['email'] = email;
+    data['firstName'] = firstName;
+    data['lastName'] = lastName;
+    data['birthDate'] = birthDate;
+    data['gender'] = gender;
+    data['tenantId'] = tenantId;
+    data['isBlocked'] = isBlocked;
+    data['isBusinessUser'] = isBusinessUser;
+    data['language'] = language;
+    data['userRoles'] = userRoles;
     return data;
   }
 }
